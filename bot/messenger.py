@@ -66,7 +66,7 @@ class Messenger(object):
     def day_countdown(self, channel_id, input_text):
         date_str = re.search("\d{4}[-]\d{2}[-]\d{2}",input_text).group()
         from_date = date.today()
-        to_date = datetime.strptime(date_str,'%Y-%m-%d')
+        to_date = datetime.strptime(date_str,'%Y-%m-%d').date()
         days = abs((to_date-from_date).days)
         txt = ":clock1: only *"+days+"* until "+date_str+"!!! :thumbsup: :sparkles: :boom: :tada:"
         self.send_message(channel_id, txt)
