@@ -20,7 +20,7 @@ class Messenger(object):
 
     def write_help_message(self, channel_id):
         bot_uid = self.clients.bot_user_id()
-        txt = '{}\n{}\n{}\n{}'.format(
+        txt = '{}\n{}\n{}\n{}\n{}'.format(
             "I'm your friendly Slack bot written in Python.  I'll *_respond_* to the following commands:",
             "> `hi <@" + bot_uid + ">` - I'll respond with a randomized greeting mentioning your user. :wave:",
             "> `<@" + bot_uid + "> joke` - I'll tell you one of my finest jokes, with a typing pause for effect. :laughing:",
@@ -65,7 +65,7 @@ class Messenger(object):
 
     def day_countdown(self, channel_id, input_text):
         rgx = re.search("\d{4}[-]\d{2}[-]\d{2}",input_text)
-        if not rgx:
+        if rgx:
             date_str = rgx.group()
             from_date = date.today()
             to_date = datetime.strptime(date_str,'%Y-%m-%d').date()
@@ -77,4 +77,8 @@ class Messenger(object):
             txt = ":clock1: only *"+str(days)+mod+"* until "+date_str+"!!! :thumbsup: :sparkles: :boom: :tada:"
         else:
             txt = "Sure you gave me that date in the correct format? `yyyy-mm-dd`"
+        self.send_message(channel_id, txt)
+
+    def yoda(self, channel_id):
+        txt = ":point_up: do or do not, there is no try"
         self.send_message(channel_id, txt)
