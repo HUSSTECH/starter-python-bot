@@ -64,13 +64,17 @@ class Messenger(object):
         self.clients.web.chat.post_message(channel_id, txt, attachments=[attachment], as_user='true')
 
     def day_countdown(self, channel_id, input_text):
-        date_str = re.search("\d{4}[-]\d{2}[-]\d{2}",input_text).group()
-        from_date = date.today()
-        to_date = datetime.strptime(date_str,'%Y-%m-%d').date()
-        days = abs((to_date-from_date).days)
-        if days > 1:
-            mod = 'days'
+        rgx = re.search("\d{4}[-]\d{2}[-]\d{2}",input_text)
+        if not rgx:
+            date_str = rgx.group()
+            from_date = date.today()
+            to_date = datetime.strptime(date_str,'%Y-%m-%d').date()
+            days = abs((to_date-from_date).days)
+            if days > 1:
+                mod = 'days'
+            else:
+                mod = 'day'
+            txt = ":clock1: only *"+str(days)+mod+"* until "+date_str+"!!! :thumbsup: :sparkles: :boom: :tada:"
         else:
-            mod = 'day'
-        txt = ":clock1: only *"+str(days)+mod+"* until "+date_str+"!!! :thumbsup: :sparkles: :boom: :tada:"
+            txt = "Sure you gave me that date in the correct format? `yyyy-mm-dd`"
         self.send_message(channel_id, txt)
