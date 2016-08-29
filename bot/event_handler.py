@@ -50,6 +50,8 @@ class RtmEventHandler(object):
                     self.msg_writer.demo_attachment(event['channel'])
                 elif 'yoda' in msg_txt:
                     self.msg_writer.yoda(event['channel'])
+                elif 'julian' in msg_txt:
+                    self.msg_writer.king_julian(event['channel'])
                 elif 'countdown' in msg_txt:
                     self.msg_writer.day_countdown(event['channel'],msg_txt)
                 else:

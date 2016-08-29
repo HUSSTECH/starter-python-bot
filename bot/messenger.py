@@ -25,7 +25,7 @@ class Messenger(object):
             "> `hi <@" + bot_uid + ">` - I'll respond with a randomized greeting mentioning your user. :wave:",
             "> `<@" + bot_uid + "> joke` - I'll tell you one of my finest jokes, with a typing pause for effect. :laughing:",
             "> `<@" + bot_uid + "> attachment` - I'll demo a post with an attachment using the Web API. :paperclip:",
-            "> `<@" + bot_uid + "> countdown yyyy-mm-dd` - I'll give you a day countdown to that date...UK format obvs :uk:")
+            "> `<@" + bot_uid + "> countdown yyyy-mm-dd` - I'll give you a day countdown to that date...iso format obvs :uk:")
         self.send_message(channel_id, txt)
 
     def write_greeting(self, channel_id, user_id):
@@ -81,4 +81,8 @@ class Messenger(object):
 
     def yoda(self, channel_id):
         txt = ":point_up: do or do not, there is no try"
+        self.send_message(channel_id, txt)
+
+    def king_julian(self, channel_id):
+        txt = "If I King Julian (that's my name) only had two days to live, I would do all the things I have ever dreamed of doing. I would love to become a professional whistler. I'm pretty amazing at it now, but I wanna get, like, even better. :kissing: :dash: :sweat_drops: :umbrella_with_rain_drops: And you know what else I would do? I would invade a neighboring country and impose my own ideology on them, even if they didn't want it!."
         self.send_message(channel_id, txt)
