@@ -80,7 +80,7 @@ class Messenger(object):
         self.send_message(channel_id, txt)
 
     def yoda(self, channel_id):
-        txt = ":point_up: do or do not, there is no try"
+        txt = ":point_up: do or do not, there is no try."
         self.send_message(channel_id, txt)
 
     def king_julian(self, channel_id):
