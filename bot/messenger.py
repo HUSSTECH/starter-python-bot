@@ -24,8 +24,8 @@ class Messenger(object):
             "I'm your friendly Slack bot written in Python.  I'll *_respond_* to the following commands:",
             "> `hi <@" + bot_uid + ">` - I'll respond with a randomized greeting mentioning your user. :wave:",
             "> `<@" + bot_uid + "> joke` - I'll tell you one of my finest jokes, with a typing pause for effect. :laughing:",
-            "> `<@" + bot_uid + "> attachment` - TEST I'll demo a post with an attachment using the Web API. :paperclip:",
-            "> `<@" + bot_uid + "> countdown yyyy-mm-dd` - I'll give you a day countdown to that date (UK format obvs :uk:)")
+            "> `<@" + bot_uid + "> attachment` - I'll demo a post with an attachment using the Web API. :paperclip:",
+            "> `<@" + bot_uid + "> countdown yyyy-mm-dd` - I'll give you a day countdown to that date...UK format obvs :uk:")
         self.send_message(channel_id, txt)
 
     def write_greeting(self, channel_id, user_id):
@@ -68,5 +68,9 @@ class Messenger(object):
         from_date = date.today()
         to_date = datetime.strptime(date_str,'%Y-%m-%d').date()
         days = abs((to_date-from_date).days)
-        txt = ":clock1: only *"+str(days)+"* until "+date_str+"!!! :thumbsup: :sparkles: :boom: :tada:"
+        if days > 1:
+            mod = 'days'
+        else:
+            mod = 'day'
+        txt = ":clock1: only *"+str(days)+mod+"* until "+date_str+"!!! :thumbsup: :sparkles: :boom: :tada:"
         self.send_message(channel_id, txt)
